@@ -146,8 +146,8 @@ input[type="checkbox"] {
 
 /* big card csss */
 .wrapper {
-  height: 530px;
-  width: 820px;
+  height: 585px;
+  width: 850px;
   margin: 105px auto;
   border-radius: 7px 7px 7px 7px;
   /* VIA CSS MATIC https://goo.gl/cIbnS */
@@ -177,17 +177,21 @@ input[type="checkbox"] {
 }
 
 .product-text {
-  height: 300px;
+  height: auto;
   width: 327px;
 }
 
 .product-text h1 {
   margin: 0 0 0 38px;
   padding-top: 52px;
-  font-size: 34px;
+  font-size: 23px;
   color: #474747;
+  text-size-adjust: auto;
   padding-bottom: 15px;
 }
+/* .product-price {
+  margin-top: 100px;
+} */
 
 .product-text h1,
 .product-price-btn p {
@@ -218,7 +222,7 @@ input[type="checkbox"] {
 .product-price-btn {
   height: 103px;
   width: 327px;
-  margin-top: 50px;
+  margin-top: 45px;
   position: relative;
 }
 
