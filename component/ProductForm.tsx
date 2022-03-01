@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import { toast } from "react-toastify";
 const ProductForm = () => {
   const title = useRef<HTMLInputElement>(null);
@@ -15,6 +15,23 @@ const ProductForm = () => {
     const prices = price.current!.value;
     const descriptions = description.current!.value;
     const images = image.current!.value;
+    toast.configure();
+    if (titles === "") {
+      toast.error("Title Must Be Filled", { autoClose: 3000 });
+      title.current!.focus();
+    } else if (categorys === "") {
+      toast.error("Category Must Be Filled", { autoClose: 3000 });
+      category.current!.focus();
+    } else if (prices === "") {
+      toast.error("Price Must Be Filled", { autoClose: 3000 });
+      price.current!.focus();
+    } else if (images === "") {
+      toast.error("Image Must Be Choice", { autoClose: 3000 });
+      image.current!.focus();
+    } else if (descriptions === "") {
+      toast.error("Description Must Be Filled", { autoClose: 3000 });
+      description.current!.focus();
+    }
 
     const addProductDetails = {
       title: titles,
@@ -64,7 +81,6 @@ const ProductForm = () => {
                       name="title"
                       ref={title}
                       placeholder="Enter Product Title"
-                      required
                     />
                   </div>
                   <div className="form-group col-sm-6 flex-column d-flex">
@@ -75,7 +91,6 @@ const ProductForm = () => {
                       name="category"
                       ref={category}
                       placeholder="Enter  Product Category"
-                      required
                     />
                   </div>
                 </div>
@@ -90,7 +105,6 @@ const ProductForm = () => {
                       name="price"
                       ref={price}
                       placeholder="Enter Price"
-                      required
                     />
                   </div>
                   <div className="form-group col-sm-6 flex-column d-flex">
@@ -104,7 +118,6 @@ const ProductForm = () => {
                       placeholder=""
                       ref={image}
                       accept="image/*"
-                      required
                     />
                   </div>
                 </div>
@@ -117,7 +130,6 @@ const ProductForm = () => {
                     <textarea
                       placeholder="Enter Product Description"
                       ref={description}
-                      required
                     ></textarea>
                   </div>
                 </div>

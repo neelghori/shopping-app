@@ -1,14 +1,8 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-
-const Product = (props: {
-  id: number;
-  title: string;
-  price: number;
-  category: string;
-  image: string;
-}) => {
+import { Apiprops } from "./helper/type";
+const Product = (props: Apiprops) => {
   const { id, title, price, category, image } = props;
 
   const singleProduct = `/product/${id}`;

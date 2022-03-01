@@ -1,6 +1,8 @@
 import React from "react";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 const EditDeleteButton = (props: { productId: number }) => {
   const router = useRouter();
   const { productId } = props;
@@ -10,19 +12,35 @@ const EditDeleteButton = (props: { productId: number }) => {
   };
   toast.configure();
   const deleteProductHandler = () => {
-    fetch(`https://fakestoreapi.com/products/${productId}`, {
-      method: "DELETE",
-    })
-      .then((res) => res.json())
-      .then((json) => {
-        if (json) {
-          toast.success("Product Deleted");
-          router.push("/Product");
-        }
-      })
-      .catch((err) => {
-        toast.error("Product Not Deleted", { autoClose: false });
-      });
+    confirmAlert({
+      title: "Are you sure you want to delete this item",
+
+      buttons: [
+        {
+          label: "Yes",
+          onClick: () =>
+            fetch(`https://fakestoreapi.com/products/${productId}`, {
+              method: "DELETE",
+            })
+              .then((res) => res.json())
+              .then((json) => {
+                if (json) {
+                  toast.success("Product Deleted");
+                  router.push("/Product");
+                }
+              })
+              .catch((err) => {
+                toast.error("Product Not Deleted", { autoClose: false });
+              }),
+        },
+        {
+          label: "No",
+          onClick: () => {
+            return false;
+          },
+        },
+      ],
+    });
   };
   const backDropHandler = () => {
     router.push("/Product");

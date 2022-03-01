@@ -3,7 +3,7 @@ import Product from "./Product";
 import Router from "next/router";
 import BeatLoader from "react-spinners/BeatLoader";
 import { toast } from "react-toastify";
-
+import { Apiprops } from "./helper/type";
 const AllProduct = (props: { sendApiData: [] }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [sortProduct, setSortProduct] = useState("");
@@ -104,26 +104,18 @@ const AllProduct = (props: { sendApiData: [] }) => {
                     return 0;
                   }
                 )
-                .map(
-                  (curelem: {
-                    id: number;
-                    title: string;
-                    price: number;
-                    category: string;
-                    image: string;
-                  }) => {
-                    return (
-                      <Product
-                        key={curelem.id}
-                        id={curelem.id}
-                        title={curelem.title}
-                        price={curelem.price}
-                        category={curelem.category}
-                        image={curelem.image}
-                      />
-                    );
-                  }
-                )}
+                .map((curelem: Apiprops) => {
+                  return (
+                    <Product
+                      key={curelem.id}
+                      id={curelem.id}
+                      title={curelem.title}
+                      price={curelem.price}
+                      category={curelem.category}
+                      image={curelem.image}
+                    />
+                  );
+                })}
             </div>
           </>
         )}

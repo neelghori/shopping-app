@@ -3,14 +3,8 @@ import Router from "next/router";
 import BeatLoader from "react-spinners/BeatLoader";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
-
-const EditForm = (props: {
-  id: number;
-  title: string;
-  descript: string;
-  price: number;
-  category: string;
-}) => {
+import { EditProps } from "./helper/type";
+const EditForm = (props: EditProps) => {
   const [titles, setTitles] = useState<string>(props.title);
   const [prices, setPrice] = useState(props.price);
   const [descriptions, setDescription] = useState(props.descript);
@@ -44,6 +38,18 @@ const EditForm = (props: {
   toast.configure();
   const editFormHandler = (event: React.FormEvent) => {
     event.preventDefault();
+
+    toast.configure();
+    if (titles === "") {
+      toast.error("Title Must Be Filled", { autoClose: 3000 });
+      return true;
+    } else if (categorys === "") {
+      toast.error("Category Must Be Filled", { autoClose: 3000 });
+    } else if (prices === 0) {
+      toast.error("Price Must Be Filled", { autoClose: 3000 });
+    } else if (descriptions === "") {
+      toast.error("Description Must Be Filled", { autoClose: 3000 });
+    }
 
     const editProductData = {
       title: titles,
@@ -90,7 +96,6 @@ const EditForm = (props: {
                       value={titles}
                       onChange={titleHandler}
                       placeholder="Enter Product Title"
-                      required
                     />
                   </div>
                   <div className="form-group col-sm-6 flex-column d-flex">
@@ -102,7 +107,6 @@ const EditForm = (props: {
                       value={categorys}
                       onChange={categoryHandler}
                       placeholder="Enter  Product Category"
-                      required
                     />
                   </div>
                 </div>
@@ -118,7 +122,6 @@ const EditForm = (props: {
                       value={prices}
                       onChange={priceHandler}
                       placeholder="Enter Price"
-                      required
                     />
                   </div>
                   <div className="form-group col-sm-6 flex-column d-flex">
@@ -138,7 +141,6 @@ const EditForm = (props: {
                       placeholder="Enter Product Description"
                       value={descriptions}
                       onChange={descriptionHandler}
-                      required
                     ></textarea>
                   </div>
                 </div>

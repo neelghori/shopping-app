@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import EditForm from "../../../component/EditForm";
 import BeatLoader from "react-spinners/BeatLoader";
 import Navbar from "../../../component/navbar/Navbar";
-import { stringify } from "querystring";
 
 const EditProduct = () => {
   const [datas, setDatas] = useState({

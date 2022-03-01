@@ -3,14 +3,8 @@ import BeatLoader from "react-spinners/BeatLoader";
 import ProductDetails from "../../component/ProductDetails";
 import Navbar from "../../component/navbar/Navbar";
 import { GetStaticProps, GetStaticPaths } from "next";
-type Apiprops = {
-  id: number;
-  title: string;
-  price: number;
-  description: string;
-  category: string;
-  image: string;
-};
+import { Apiprops } from "../../component/helper/type";
+
 const ProductId = (props: { data: Apiprops }) => {
   const [loading, setLoading] = useState(false);
   useEffect(() => {

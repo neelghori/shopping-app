@@ -2,16 +2,9 @@ import React, { useState } from "react";
 import Image from "next/image";
 import EditDeleteButton from "./EditDeleteButton";
 import BeatLoader from "react-spinners/BeatLoader";
-
+import { Apiprops } from "./helper/type";
 import Router from "next/router";
-type Apiprops = {
-  id: number;
-  title: string;
-  price: number;
-  description: string;
-  category: string;
-  image: string;
-};
+
 const ProductDetails = (props: { productDetails: Apiprops }) => {
   const [loading, setLoading] = useState(false);
 
@@ -39,9 +32,9 @@ const ProductDetails = (props: { productDetails: Apiprops }) => {
               <h2>Category: {props.productDetails.category}</h2>
               <p>{props.productDetails.description}</p>
             </div>
-            <div className="product-price-btn">
+            <div className="product-price-btn product-price">
               <p>
-                <span>{props.productDetails.price}</span>$
+                $<span>{props.productDetails.price}</span>
               </p>
             </div>
           </div>
